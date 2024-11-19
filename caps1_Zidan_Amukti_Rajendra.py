@@ -41,7 +41,7 @@ Maaf INPUT yang anda masukkan masih salah
         
 def beneranMauUpdate(index, indexKolom,inputUpdate):
     while True:
-        inputUpdateValidasi = input(f"Apakah anda benar ingin menghapus mengupdate data tersebut (Y/N) ? ").upper().strip()
+        inputUpdateValidasi = input(f"Apakah anda benar ingin mengupdate data tersebut (Y/N) ? ").upper().strip()
         if inputUpdateValidasi == "Y" or inputUpdateValidasi =="YES":
             print(f'''
 ===============================================================================
@@ -50,6 +50,7 @@ Selamat anda berhasil mengupdate {headers[indexKolom]} dari stok {listStok[index
 ''')        
             if indexKolom ==3 or indexKolom == 5: #ini buat yang masuknya integer
                 listStok[index][indexKolom] = int(inputUpdate)
+                listStok[index][-1] = listStok[index][3] * listStok[index][5]
             
             elif indexKolom == 2 or indexKolom == 4 :
                 listStok[index][indexKolom] = inputUpdate
@@ -150,14 +151,14 @@ Input yang anda masukkan salah No atau Id tidak boleh diubah
                 print(f'''
 =======================================================
 Input yang anda masukkan salah (diluar INDEX yang ada)
-                Silahkan Coba lagi 1
+                Silahkan Coba lagi 
 =======================================================
 ''')
         except ValueError:
             print(f'''
 =======================================================
 Input yang anda masukkan salah (diluar INDEX yang ada)
-                Silahkan Coba lagi 2
+                Silahkan Coba lagi 
 =======================================================
 ''')
     
@@ -169,7 +170,7 @@ def updateStok():
     print('''
 =====================
 Berikut Merupakan Id
-Yand anda dapat Update
+Yang anda dapat Update
 =====================  
           ''')
     tableId = tabulate(
@@ -182,6 +183,15 @@ Yand anda dapat Update
     while True :
         try :
             inputUpdateIndex = int(input("Masukkan ID Stok yang ingin diubah nilainya (1,2,3,4,...): "))
+            print(inputUpdateIndex)
+            if inputUpdateIndex <= 0:
+                print(f'''
+=======================================================
+Input yang anda masukkan salah (diluar INDEX yang ada)
+                Silahkan Coba lagi 
+=======================================================
+''')            
+                updateStok()
             if inputUpdateIndex <= len(listStok):
                 validasiUpdateIndex(inputUpdateIndex)   
             else:
@@ -224,6 +234,7 @@ Silahkan Masukkan Stok pada Database
                 
             elif inputMenuUpdate == 2:
                 main_menu()
+                
                 
             else :
                 print(f'''
@@ -580,7 +591,7 @@ def menuMenambahStok():
 =====================
 Menu Menambah Stok
 =====================
-1. Menambah Stok
+1. Menambah Bahan
 2. Kembali Ke Menu Utama 
 Masukkan angka yang diinginkan : '''))
             if inputMenuTambah == 1:
@@ -727,6 +738,14 @@ Yand anda dapat Lihat
     while True:
         try:
             inputIndexDataSpesifik = int(input("Masukkan Id yang ingin dilihat detailnya (1,2,3,4,....): "))-1 
+            if inputIndexDataSpesifik < 0 :
+                print(f'''
+======================================================
+Input yang anda masukkan salah (diluar INDEX yang ada)
+                Silahkan Coba lagi 
+======================================================
+''')            
+                tampilkanDataSpesifik()
             if inputIndexDataSpesifik < len(listStok) :
                 listDataSpesifik = [listStok[inputIndexDataSpesifik]]#harus list dalam list untuk tabulate
                 tampilkanTableStok(listDataSpesifik)
@@ -754,8 +773,8 @@ def menuMenampilkanStok():
 Menu Menampilkan Stok
 =====================
 1. Tampilkan Semua Stok
-2. Tampilkan Stok Detail
-3. Tampilkan Stok Per Kategori
+2. Tampilkan Bahan Tertentu
+3. Tampilkan Bahan Per Kategori
 4. Kembali Ke Menu Utama 
 Masukkan angka yang ingin dijalankan : '''))
             
@@ -769,6 +788,11 @@ Silahkan Masukkan Stok pada Database
 ==========================================
 ''') 
                 else: 
+                    print('''
+===========================================
+Berikut Merupakan Seluruh Isi dari Database
+===========================================
+                          ''')
                     tampilkanTableStok(listStok)
                     menuSortingData()
                     
