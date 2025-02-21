@@ -131,19 +131,3 @@ Data akan diperbarui setelah konfirmasi.
 - **Fleksibilitas**: Mendukung berbagai operasi CRUD (Create, Read, Update, Delete) untuk manajemen inventaris.
 
 ---
-
-## **Kontak Pengembang**
-
-Jika Anda memiliki pertanyaan, saran, atau masalah terkait program ini, silakan hubungi kami di:
-- Email: [email@example.com](mailto:email@example.com)
-- GitHub: [github.com/username](https://github.com/username)
-
----
-
-## **Lisensi**
-
-Program ini dilisensikan di bawah lisensi MIT. Anda bebas menggunakan, memodifikasi, dan mendistribusikan program ini sesuai dengan ketentuan lisensi.
-
----
-
-Terima kasih telah menggunakan **Inventory Management System**! Kami harap program ini dapat membantu Anda mengelola inventaris dengan lebih baik. 😊
